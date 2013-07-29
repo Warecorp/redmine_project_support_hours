@@ -3,15 +3,15 @@ module ProjectSupportHoursHelper
   include Redmine::I18n
   
   def self.total_support_hours(project)
-    ProjectSupportHours::Calculator.total_support_hours_for(project).to_f.round_with_precision(2)
+    ProjectSupportHours::Calculator.total_support_hours_for(project).to_f.round(2)
   end
   
   def self.total_hours_used(project)
-    ProjectSupportHours::Calculator.total_hours_used_for(project).to_f.round_with_precision(2)
+    ProjectSupportHours::Calculator.total_hours_used_for(project).to_f.round(2)
   end
   
   def self.total_hours_remaining(project)
-    ProjectSupportHours::Calculator.total_hours_remaining_for(project).to_f.round_with_precision(2)
+    ProjectSupportHours::Calculator.total_hours_remaining_for(project).to_f.round(2)
   end
   
   def self.start_date(project)
