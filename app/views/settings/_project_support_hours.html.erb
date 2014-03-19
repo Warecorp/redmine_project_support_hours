@@ -17,15 +17,15 @@ def project_role_config(option_name, current_value)
 	label = content_tag(:label, l("project_support_hours_#{option_name}_label".to_sym))
   data = Role.all
   unless data.empty?
-    select = select_tag("settings[#{option_name}]", 
+    select = select_tag("settings[#{option_name}]",
                         content_tag(:option, '') +
                         options_from_collection_for_select(data, :id, :name, current_value))
   else
 		select = link_to(l(:project_support_hours_missing_role_field),
 	                   :controller => 'roles', :action => 'index')
-  end  
+  end
   return content_tag(:p, label + select)
-	
+
 end
 
 %>
@@ -36,13 +36,14 @@ end
   <%= content_tag(:p, l(:project_support_hours_settings_help)) %>
 
   <%= custom_field_config('hours_field', 'float', @settings['hours_field'].to_i) %>
+  <%= custom_field_config('t_m', 'bool', @settings['t_m'].to_i) %>
   <%= custom_field_config('start_date_field', 'date', @settings['start_date_field'].to_i) %>
   <%= custom_field_config('end_date_field', 'date', @settings['end_date_field'].to_i) %>
 
   <%= content_tag(:p, l(:project_support_hours_settings_report_help)) %>
 
   <%= custom_field_config('field_list_field', 'list', @settings['field_list_field'].to_i) %>
-  <%= project_role_config('project_role_field', @settings['project_role_field'].to_i) %> 
+  <%= project_role_config('project_role_field', @settings['project_role_field'].to_i) %>
 
   <%= content_tag(:p, l(:project_support_hours_settings_activity_help)) %>
 
