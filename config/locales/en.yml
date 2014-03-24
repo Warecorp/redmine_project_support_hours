@@ -21,3 +21,4 @@ en:
   project_support_hours_missing_activities: "Missing a Time Entry Activity.  Please create one first."
   project_support_hours_excluded_activities: "Exclude these activities from the support hours"
   project_support_hours_title: "Projects hours"
+  project_support_hours_t_m_label: 'Time and Material'
