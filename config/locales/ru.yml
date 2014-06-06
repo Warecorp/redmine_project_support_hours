@@ -17,3 +17,6 @@ ru:
   project_support_hours_missing_activities: "Отсутствует Действие учета времени.  Пожалуйста создайте одно сначала."
   project_support_hours_excluded_activities: "Исключить эти действия из поддерживаемых часов"
   project_support_hours_title: "Проектные часы"
+  project_support_hours_label_state: 'Статус'
+  project_support_hours_left_range: 'Левая граница'
+  project_support_hours_right_range: 'Правая граница'

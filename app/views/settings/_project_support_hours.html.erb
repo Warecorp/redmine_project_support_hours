@@ -68,4 +68,20 @@ end
    <% end %>
   </p>
 
+  <p>
+    <%= content_tag(:label, l(:project_support_hours_left_range)) %>
+    <input name='settings[range1]' value="<%= @settings['range1'] %>" style="width: 25px;"/>
+    ...
+    <input name='settings[range2]' value="<%= @settings['range2'] %>" style="width: 25px; margin-right: 10px;"/>
+    default value: 0.8 ... 0.9
+  </p>
+
+  <p>
+    <%= content_tag(:label, l(:project_support_hours_right_range)) %>
+    <input name='settings[range3]' value="<%= @settings['range3'] %>" style="width: 25px;"/>
+    ...
+    <input name='settings[range4]' value="<%= @settings['range4'] %>" style="width: 25px; margin-right: 10px; "/>
+    default value: 1.0 ... 1.1
+  </p>
+
 </fieldset>

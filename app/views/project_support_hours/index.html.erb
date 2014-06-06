@@ -1,3 +1,5 @@
+<%= stylesheet_link_tag 'state', plugin: 'redmine_project_support_hours' %>
+
 <h2>Project Support Hours</h2>
 
 <% form_tag({}, :method => :get) do %>
@@ -14,6 +16,7 @@
 <div class="autoscroll">
 <table class="list">
   <thead><tr>
+  <th><%=l(:project_support_hours_label_state)%></th>
 	<th><%=l(:label_project)%></th>
 	<th><%=l(:project_support_hours_total_hours_field_label)%></th>
 	<th><%=l(:label_spent_time)%></th>
@@ -29,19 +32,27 @@
   </tr></thead>
   <tbody>
 <% project_tree(@projects) do |project, level| %>
+
+  <% start_date = ProjectSupportHoursHelper.start_date(project) %>
+  <% end_date = ProjectSupportHoursHelper.end_date(project) %>
+  <% total_support_hours = ProjectSupportHoursHelper.total_support_hours(project) %>
+  <% total_hours_used = ProjectSupportHoursHelper.total_hours_used(project) %>
+  <% state = ProjectSupportHoursHelper.project_state(start_date, end_date, total_support_hours, total_hours_used) %>
+
   <tr class="<%= cycle("odd", "even") %> <%= project.css_classes %> <%= level > 0 ? "idnt idnt-#{level}" : nil %>">
-		<td class="name"><%= project.active? ? link_to(h(project.name), :controller => 'projects', :action => 'settings', :id => project) : h(project.name) %></td>
-	<td align="center"><%= ProjectSupportHoursHelper.total_support_hours(project) %></td>
-	<td align="center"><%= ProjectSupportHoursHelper.total_hours_used(project) %></td>
-	<td align="center"><%= ProjectSupportHoursHelper.total_hours_remaining(project) %></td>
-	<td align="center"><%= ProjectSupportHoursHelper.start_date(project) %></td>
-	<td align="center"><%= ProjectSupportHoursHelper.end_date(project) %></td>
-	<% if ProjectSupportHoursHelper.field_list_name %>
-		<td align="center"><%= ProjectSupportHoursHelper.field_list(project) %></td>
-	<% end %>
-	<% if ProjectSupportHoursHelper.project_role_name	%>
-		<td align="center"><%= ProjectSupportHoursHelper.project_role(project) %></td>
-	<% end %>
+    <td class="state <%= state %>"></td>
+		<td class="name"><%= project.active? ? link_to(h(project.name), settings_project_path(project)) : h(project.name) %> </td>
+  	<td align="center"><%= total_support_hours %></td>
+  	<td align="center"><%= total_hours_used %></td>
+  	<td align="center"><%= ProjectSupportHoursHelper.total_hours_remaining(project) %></td>
+  	<td align="center"><%= start_date %></td>
+  	<td align="center"><%= end_date %></td>
+  	<% if ProjectSupportHoursHelper.field_list_name %>
+  		<td align="center"><%= ProjectSupportHoursHelper.field_list(project) %></td>
+  	<% end %>
+  	<% if ProjectSupportHoursHelper.project_role_name	%>
+  		<td align="center"><%= ProjectSupportHoursHelper.project_role(project) %></td>
+  	<% end %>
   </tr>
 <% end %>
   </tbody>

@@ -1,0 +1,20 @@
+.state:after {
+  content: " ";
+  width: 10px;
+  height: 10px;
+  border-radius: 10px;
+  display: inline-block;
+  margin-left: 3px;
+}
+
+.state.red:after {
+  background-color: red;
+}
+
+.state.yellow:after {
+  background-color: yellow;
+}
+
+.state.green:after {
+  background-color: green;
+}

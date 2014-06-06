@@ -42,5 +42,25 @@ module ProjectSupportHours
       end
     end
 
+    def self.range_1
+      configuration = Setting.plugin_redmine_project_support_hours
+      return configuration['range1'] ? configuration['range1'].to_f : 0.8
+    end
+
+    def self.range_2
+      configuration = Setting.plugin_redmine_project_support_hours
+      return configuration['range2'] ? configuration['range2'].to_f : 0.9
+    end
+
+    def self.range_3
+      configuration = Setting.plugin_redmine_project_support_hours
+      return configuration['range3'] ? configuration['range3'].to_f : 1.0
+    end
+
+    def self.range_4
+      configuration = Setting.plugin_redmine_project_support_hours
+      return configuration['range4'] ? configuration['range4'].to_f : 1.1
+    end
+
   end
 end
