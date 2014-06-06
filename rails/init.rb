@@ -28,7 +28,11 @@ Redmine::Plugin.register :redmine_project_support_hours do
                'end_date_field' => nil,
                'field_list_field' => nil,
                'project_role_field' => nil,
-               'excluded_activities' => []
+               'excluded_activities' => [],
+               'range1' => 0.8,
+               'range2' => 0.9,
+               'range3' => 1.0,
+               'range4' => 1.1
              }})
   permission :see_project_timesheets, { }, :require => :member
   menu :top_menu, :project_support_hours, { :controller => "project_support_hours", :action => "index"}, :caption => :project_support_hours_title, :if => Proc.new {User.current.admin?}
