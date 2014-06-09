@@ -90,6 +90,8 @@ module ProjectSupportHoursHelper
 
       is_over = end_date.present? ? Date.current > Date.parse(end_date) : false
 
+      project_manager_name = ProjectSupportHoursHelper.project_role(project)
+
       projects_support_hours << {
         id:               project.id,
         name:             project.name,
@@ -97,7 +99,8 @@ module ProjectSupportHoursHelper
         remaining_days:   remaining_days,
         is_over:          is_over,
         total_plan_hours: total_support_hours,
-        total_hours_used: total_hours_used
+        total_hours_used: total_hours_used,
+        project_manager_name: project_manager_name.try(:strip)
       }
     end
 
