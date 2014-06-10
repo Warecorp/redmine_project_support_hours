@@ -77,4 +77,12 @@ module ProjectSupportHoursHelper
     ProjectSupportHours::State.calculate(start_date.to_date, end_date.to_date, total_support_hours, total_hours_used)
   end
 
+  def self.days_left end_date
+    return if end_date.blank?
+    end_date = end_date.to_date
+    return 'is over' if Date.current > end_date
+    days_count = end_date - Date.current
+    "#{days_count} #{'day'.pluralize(days_count)} left"
+  end
+
 end

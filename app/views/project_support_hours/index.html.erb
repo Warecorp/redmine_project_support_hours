@@ -38,9 +38,10 @@
   <% total_support_hours = ProjectSupportHoursHelper.total_support_hours(project) %>
   <% total_hours_used = ProjectSupportHoursHelper.total_hours_used(project) %>
   <% state = ProjectSupportHoursHelper.project_state(start_date, end_date, total_support_hours, total_hours_used) %>
+  <% days_left = ProjectSupportHoursHelper.days_left(end_date) %>
 
   <tr class="<%= cycle("odd", "even") %> <%= project.css_classes %> <%= level > 0 ? "idnt idnt-#{level}" : nil %>">
-    <td class="state <%= state %>"></td>
+    <td class="state <%= state %>" title="<%= days_left %>"></td>
 		<td class="name"><%= project.active? ? link_to(h(project.name), settings_project_path(project)) : h(project.name) %> </td>
   	<td align="center"><%= total_support_hours %></td>
   	<td align="center"><%= total_hours_used %></td>
