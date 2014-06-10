@@ -117,11 +117,11 @@ module ProjectSupportHoursHelper
     return if end_date.blank?
     end_date = end_date.to_date
     return 'is over' if Date.current > end_date
-    days_count = ProjectSupportHoursHelper.work_days_off_beetwen(Date.current, end_date)
+    days_count = ProjectSupportHoursHelper.work_days_beetwen(Date.current, end_date)
     "#{days_count} #{'day'.pluralize(days_count)} left"
   end
 
-  def self.work_days_off_beetwen(start_date, end_date)
+  def self.work_days_beetwen(start_date, end_date)
     days_off = begin
       HolidaysCalendar::Mapper.dates_day_off
     rescue

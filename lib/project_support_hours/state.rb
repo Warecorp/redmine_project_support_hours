@@ -30,16 +30,16 @@ module ProjectSupportHours
       def optimum_time_per_day
         diff = total_support_hours / total_days.to_f
         date_now = Date.current > end_date ? end_date : Date.current
-        days = ProjectSupportHoursHelper.work_days_off_beetwen(start_date, date_now)
+        days = ProjectSupportHoursHelper.work_days_beetwen(start_date, date_now)
         days * diff.to_f
       end
 
       def total_days
-        ProjectSupportHoursHelper.work_days_off_beetwen(start_date, end_date)
+        ProjectSupportHoursHelper.work_days_beetwen(start_date, end_date)
       end
 
       def remaining_days
-        ProjectSupportHoursHelper.work_days_off_beetwen(Date.current, end_date)
+        ProjectSupportHoursHelper.work_days_beetwen(Date.current, end_date)
       end
 
       def mapping_ranges
