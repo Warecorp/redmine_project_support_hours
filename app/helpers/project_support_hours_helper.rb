@@ -72,6 +72,42 @@ module ProjectSupportHoursHelper
       export
   end
 
+  def self.projects_to_json projects
+    projects_support_hours = []
+
+    projects.each do |project|
+      total_support_hours = ProjectSupportHoursHelper.total_support_hours(project)
+
+      next if total_support_hours == 0
+
+      total_hours_used = ProjectSupportHoursHelper.total_hours_used(project)
+
+      start_date = ProjectSupportHoursHelper.start_date(project)
+      end_date = ProjectSupportHoursHelper.end_date(project)
+
+      state = ProjectSupportHoursHelper.project_state(start_date, end_date, total_support_hours, total_hours_used)
+      remaining_days = state.present? ? ProjectSupportHours::State.remaining_days : nil
+
+      is_over = end_date.present? ? Date.current > Date.parse(end_date) : false
+
+      project_manager_name = ProjectSupportHoursHelper.project_role(project)
+
+      projects_support_hours << {
+        id:               project.id,
+        name:             project.name,
+        state:            state,
+        remaining_days:   remaining_days,
+        is_over:          is_over,
+        total_plan_hours: total_support_hours,
+        total_hours_used: total_hours_used,
+        project_manager_name: project_manager_name.try(:strip)
+      }
+    end
+
+    projects_support_hours
+
+  end
+
   def self.project_state(start_date, end_date, total_support_hours, total_hours_used)
     return if (total_support_hours == 'T&M' || start_date.blank? || end_date.blank? || total_support_hours == 0.0)
     ProjectSupportHours::State.calculate(start_date.to_date, end_date.to_date, total_support_hours, total_hours_used)

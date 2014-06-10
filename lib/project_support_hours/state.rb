@@ -46,6 +46,11 @@ module ProjectSupportHours
           reject{ |date| days_off.split(',').include? date.to_s }.count
       end
 
+      def remaining_days
+        (Date.current..end_date).to_a.
+          reject{ |date| days_off.split(',').include? date.to_s }.count
+      end
+
       def mapping_ranges
         mapper = ProjectSupportHours::Mapper
         @range_1, @range_2, @range_3, @range_4 =
