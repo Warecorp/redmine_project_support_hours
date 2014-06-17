@@ -109,7 +109,8 @@ module ProjectSupportHoursHelper
   end
 
   def self.project_state(start_date, end_date, total_support_hours, total_hours_used)
-    return if (total_support_hours == 'T&M' || start_date.blank? || end_date.blank? || total_support_hours == 0.0)
+    return 'gray' if total_support_hours == 'T&M'
+    return if (start_date.blank? || end_date.blank? || total_support_hours == 0.0)
     ProjectSupportHours::State.calculate(start_date.to_date, end_date.to_date, total_support_hours, total_hours_used)
   end
 

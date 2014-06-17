@@ -18,3 +18,7 @@
 .state.green:after {
   background-color: green;
 }
+
+.state.gray:after {
+  background-color: #B6BFB6;
+}
