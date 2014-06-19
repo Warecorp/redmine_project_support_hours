@@ -86,7 +86,11 @@ module ProjectSupportHoursHelper
       end_date = ProjectSupportHoursHelper.end_date(project)
 
       state = ProjectSupportHoursHelper.project_state(start_date, end_date, total_support_hours, total_hours_used)
-      remaining_days = state.present? ? ProjectSupportHours::State.remaining_days : nil
+      remaining_days = if state.present? and end_date.present?
+        ProjectSupportHours::State.remaining_days Date.parse(end_date)
+      else
+        nil
+      end
 
       is_over = end_date.present? ? Date.current > Date.parse(end_date) : false
 
