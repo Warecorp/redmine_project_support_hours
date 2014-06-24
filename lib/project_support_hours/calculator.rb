@@ -54,10 +54,9 @@ module ProjectSupportHours
     end
 
     def self.project_role_for(project)
-      member = Member.find(:first, :include => ["member_roles"], :conditions => ["member_roles.role_id = ? AND project_id = ?", ProjectSupportHours::Mapper.project_role, project.id])
-      first_name = member ? User.find(member.user_id).firstname.to_s : ""
-      last_name = member ? User.find(member.user_id).lastname.to_s : ""
-      first_name + " " + last_name
+      pm_role_id = ProjectSupportHours::Mapper.project_role
+      member = project.users_by_role[Role.find(pm_role_id)].try(:first)
+      member.name if member
     end
 
     def self.project_role_name_for
