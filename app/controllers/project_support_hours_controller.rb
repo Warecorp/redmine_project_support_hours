@@ -17,7 +17,7 @@ class ProjectSupportHoursController < ApplicationController
       condition += c[1..-1]
     end
 
-    @projects = Project.find :all, :order => 'lft', :conditions => condition
+    @projects = Project.where(condition).order('lft')
     respond_to do |format|
       format.html { render :action => "projects", :layout => false if request.xhr? }
       format.csv  { send_data(ProjectSupportHoursHelper.projects_to_csv(@projects), :type => 'text/csv; header=present', :filename => 'export.csv') }

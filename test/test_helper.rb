@@ -68,7 +68,7 @@ class Test::Unit::TestCase
       should "return the ProjectCustomField for '#{field_name}'" do
         custom_field = ProjectCustomField.generate!(:field_format => format)
         configure_plugin(field_name.to_s => custom_field.id.to_s)
-      
+
         assert_equal custom_field, ProjectSupportHours::Mapper.send(method_call)
       end
     end
@@ -113,7 +113,7 @@ class Test::Unit::TestCase
           assert_equal 10.2, field.value.to_f
         end
       end
-      
+
       context "for start date" do
         should "do nothing if the start_date_field is not configured" do
           configure_plugin('start_date_field' => nil)

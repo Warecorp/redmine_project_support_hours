@@ -41,7 +41,7 @@ module ProjectSupportHours
     end
 
     def self.field_list_for(project)
-      CustomValue.find(:first, :conditions => ["custom_field_id = ? AND customized_id = ?", ProjectSupportHours::Mapper.field_list, project.id]).to_s
+      CustomValue.where("custom_field_id = ? AND customized_id = ?", ProjectSupportHours::Mapper.field_list, project.id).first.to_s
     end
 
     def self.field_list_name_for
