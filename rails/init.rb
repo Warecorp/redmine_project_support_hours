@@ -12,8 +12,8 @@ require 'project_support_hours/hooks/external_signups_hooks'
 
 Redmine::Plugin.register :redmine_project_support_hours do
   name 'Project Support Hours'
-  author 'Eric Davis/Stas Belov'
-  url 'http://github.com/hronix/redmine_project_support_hours'
+  author 'Eric Davis/Andreyuk'
+  url 'http://github.com/Warecorp/redmine_project_support_hours'
   author_url 'http://github.com/hronix'
   description 'Project Support Hours is a plugin to implement per-project buckets of hours that are used for support.'
   version '0.1.5'
